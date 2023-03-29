@@ -1,7 +1,8 @@
 import FWCore.ParameterSet.Config as cms
-import FWCore.ParameterSet.VarParsing as VarParsing
-
+from FWCore.ParameterSet.VarParsing import VarParsing
+options = VarParsing ('analysis')
 options.parseArguments()
+
 process = cms.Process("WeightAnalysis")
 
 # import of standard configurations
@@ -12,6 +13,12 @@ process.MessageLogger.cerr.FwkReport.reportEvery = cms.untracked.int32(100)
 process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(options.maxEvents) )
 process.source = cms.Source("PoolSource",fileNames = cms.untracked.vstring(options.inputFiles))
 
-process.genwanal = cms.EDAnalyzer('GenWeightAnal')
+process.analysis = cms.EDAnalyzer('GenWeightAnal')
+process.analysis.externalLHE = cms.InputTag("externalLHEProducer")
 
-process.p = cms.Path(process.genwanal)
+process.TFileService = cms.Service("TFileService", 
+      fileName = cms.string("output.root"),
+      closeFileFast = cms.untracked.bool(True)
+  )
+
+process.p = cms.Path(process.analysis)
