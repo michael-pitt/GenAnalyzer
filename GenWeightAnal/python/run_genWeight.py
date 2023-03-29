@@ -17,7 +17,7 @@ process.analysis = cms.EDAnalyzer('GenWeightAnal')
 process.analysis.externalLHE = cms.InputTag("externalLHEProducer")
 
 process.TFileService = cms.Service("TFileService", 
-      fileName = cms.string("output.root"),
+      fileName = cms.string(options.outputFile),
       closeFileFast = cms.untracked.bool(True)
   )
 

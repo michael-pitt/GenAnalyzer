@@ -181,6 +181,9 @@ GenWeightAnal::beginJob()
    counter_ = fs->make<TH1F>("counter", ";Counter;Events",2,0,2);
    tree_ = fs->make<TTree>("tree","Tree with all GenLevel info");
    createMiniEventTree(tree_,ev_);	
+   
+   // initiate histogram with the total number of events
+   counter_->SetBinContent(1,50000);
 }
 
 // ------------ method called once each job just after ending the event loop  ------------
