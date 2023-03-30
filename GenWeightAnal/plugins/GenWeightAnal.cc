@@ -148,17 +148,18 @@ GenWeightAnal::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
    // Read MCParticles
    edm::Handle<reco::GenParticleCollection> prunedGenParticles;
    iEvent.getByToken(prunedGenParticlesToken_,prunedGenParticles);
-   TLorentzVector taup, taum;
+   TLorentzVector taup, taum; int ntau=0;
    for (size_t i = 0; i < prunedGenParticles->size(); ++i){
 	   const reco::GenParticle & genIt = (*prunedGenParticles)[i];
        int id=genIt.pdgId();
        int absid=abs(id);
 	   if(absid==15 && genIt.isLastCopy()){
+		   ntau++;
 		   if(genIt.charge()>0) taup.SetPtEtaPhiM(genIt.pt(),genIt.eta(),genIt.phi(),genIt.mass());
 		   else taum.SetPtEtaPhiM(genIt.pt(),genIt.eta(),genIt.phi(),genIt.mass());
 	   }
    }
-   ev_.mtautau = (taup+taum).M();
+   ev_.mtautau = (ntau==2) ? (taup+taum).M() : -1;
    
    // Fill event tree
    tree_->Fill();
