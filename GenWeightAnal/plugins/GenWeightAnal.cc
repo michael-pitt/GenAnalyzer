@@ -20,6 +20,7 @@
 // system include files
 #include <memory>
 #include <iostream>
+#include <string>
 
 // user include files
 #include "FWCore/Framework/interface/Frameworkfwd.h"
@@ -48,6 +49,8 @@
 // ROOT includes
 #include "TTree.h"
 #include "TLorentzVector.h"
+#include "TString.h"
+#include "TObjArray.h"
 
 //
 // class declaration
@@ -142,6 +145,8 @@ GenWeightAnal::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
 	for(unsigned int i=0  ; i<ev_.g_nw;i++){
 	   //cout << weights[i].id << " = " << weights[i].wgt << endl;
 	   ev_.g_w[i] = weights[i].wgt;
+	   TObjArray * split_id = TString(weights[i].id.c_str()).Tokenize("_");
+	   ev_.g_wval[i] = (split_id->GetEntries()==2) ? TString(split_id->At(1)->GetName()).ReplaceAll("p",".").ReplaceAll("m","-").Atof() : 0;
 	}
    }
 	   

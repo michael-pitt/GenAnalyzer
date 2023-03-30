@@ -19,7 +19,7 @@ struct MiniEvent_t
    
   //gen level event
   UInt_t g_nw;
-  Float_t g_w[MAXWEIGHTS];
+  Float_t g_w[MAXWEIGHTS], g_wval[MAXWEIGHTS];
 
   //HL variables
   Float_t mtautau;
