@@ -35,3 +35,12 @@ $CMSSW_BASE/src/GenAnalyzer/GenWeightAnal/scripts/process_all.sh folder_with_int
 ```
 
 You can set the `DOCONDOR` variable if you wish to run locally or on Condor
+
+## Making plots
+
+To plot the comparison between the weighted shapes run
+```
+mkdir output
+
+root -l $CMSSW_BASE/src/GenAnalyzer/GenWeightAnal/scripts/CompareWeights.cc
+```
