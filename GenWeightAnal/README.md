@@ -4,9 +4,16 @@ Produces output with all LHE weights
 ## Setup the code
 
 ```
+#for 10.4 cycle
 cmsrel CMSSW_10_6_32_patch1
 cd CMSSW_10_6_32_patch1/src
 cmsenv
+
+#for 12.5 cycle
+cmsrel CMSSW_12_5_0
+cd CMSSW_12_5_0/src
+cmsenv
+
 
 git clone git@github.com:michael-pitt/GenAnalyzer.git
 scram b -j2

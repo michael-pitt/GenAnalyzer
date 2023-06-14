@@ -143,13 +143,13 @@ GenWeightAnal::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
    }
    else{
 	for(unsigned int i=0  ; i<ev_.g_nw;i++){
-	   //cout << weights[i].id << " = " << weights[i].wgt << endl;
+//	   cout << weights[i].id << " = " << weights[i].wgt << endl;
 	   ev_.g_w[i] = weights[i].wgt;
 	   TObjArray * split_id = TString(weights[i].id.c_str()).Tokenize("_");
 	   ev_.g_wval[i] = (split_id->GetEntries()==2) ? TString(split_id->At(1)->GetName()).ReplaceAll("p",".").ReplaceAll("m","-").Atof() : 0;
 	}
    }
-	   
+
    // Read MCParticles
    edm::Handle<reco::GenParticleCollection> prunedGenParticles;
    iEvent.getByToken(prunedGenParticlesToken_,prunedGenParticles);
@@ -165,6 +165,9 @@ GenWeightAnal::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
 	   }
    }
    ev_.mtautau = (ntau==2) ? (taup+taum).M() : -1;
+   ev_.ytautau = (ntau==2) ? (taup+taum).Rapidity() : -1;
+   ev_.xiPos = (ntau==2) ? (taup.Pt()*exp( taup.Eta())+taum.Pt()*exp( taum.Eta()))/13000. : -1;
+   ev_.xiNeg = (ntau==2) ? (taup.Pt()*exp(-taup.Eta())+taum.Pt()*exp(-taum.Eta()))/13000. : -1;
    
    // Fill event tree
    tree_->Fill();

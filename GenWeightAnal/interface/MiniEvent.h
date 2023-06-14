@@ -22,7 +22,7 @@ struct MiniEvent_t
   Float_t g_w[MAXWEIGHTS], g_wval[MAXWEIGHTS];
 
   //HL variables
-  Float_t mtautau;
+  Float_t mtautau, ytautau, xiPos, xiNeg;
 
 
 };
