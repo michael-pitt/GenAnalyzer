@@ -168,6 +168,10 @@ GenWeightAnal::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
    ev_.ytautau = (ntau==2) ? (taup+taum).Rapidity() : -1;
    ev_.xiPos = (ntau==2) ? (taup.Pt()*exp( taup.Eta())+taum.Pt()*exp( taum.Eta()))/13000. : -1;
    ev_.xiNeg = (ntau==2) ? (taup.Pt()*exp(-taup.Eta())+taum.Pt()*exp(-taum.Eta()))/13000. : -1;
+   ev_.tau1_pt = (taup.Pt() > taum.Pt()) ? taup.Pt() : taum.Pt();
+   ev_.tau2_pt = (taup.Pt() > taum.Pt()) ? taum.Pt() : taup.Pt();
+   ev_.tau1_eta = (taup.Pt() > taum.Pt()) ? taup.Eta() : taum.Eta();
+   ev_.tau2_eta = (taup.Pt() > taum.Pt()) ? taum.Eta() : taup.Eta();
    
    // Fill event tree
    tree_->Fill();
