@@ -16,9 +16,9 @@ extime="testmatch" #testmatch tomorrow workday
 condor="submit_condor.sub"
 if [ "$DOCONDOR" -eq 1  ]; then
 echo "executable  = $CMSSW_BASE/src/GenAnalyzer/GenWeightAnal/scripts/run_job.sh" > $condor
-echo "output      = ${condor}.out" >> $condor
-echo "error       = ${condor}.err" >> $condor
-echo "log         = ${condor}.log" >> $condor
+echo "output      = $PWD/${condor}.out" >> $condor
+echo "error       = $PWD/${condor}.err" >> $condor
+echo "log         = $PWD/${condor}.log" >> $condor
 echo "+JobFlavour =\"${extime}\"">> $condor
 echo "requirements = (OpSysAndVer =?= \"CentOS7\")" >> $condor  # SLCern6 CentOS7
 fi

@@ -23,6 +23,7 @@ struct MiniEvent_t
 
   //HL variables
   Float_t mtautau, ytautau, xiPos, xiNeg;
+  Float_t tau1_pt, tau2_pt, tau1_eta, tau2_eta;
 
 
 };

@@ -27,6 +27,11 @@ void createMiniEventTree(TTree *t,MiniEvent_t &ev)
   t->Branch("xiPos",   &ev.xiPos,   "xiPos/F");
   t->Branch("xiNeg",   &ev.xiNeg,   "xiNeg/F");
 
+  t->Branch("tau1_pt",   &ev.tau1_pt,   "tau1_pt/F");
+  t->Branch("tau2_pt",   &ev.tau2_pt,   "tau2_pt/F");
+  t->Branch("tau1_eta",   &ev.tau1_eta,   "tau1_eta/F");
+  t->Branch("tau2_eta",   &ev.tau2_eta,   "tau2_eta/F");
+
 }
 
 //
@@ -54,5 +59,10 @@ void attachToMiniEventTree(TTree *t,MiniEvent_t &ev)
   t->SetBranchAddress("ytautau",      &ev.ytautau);
   t->SetBranchAddress("xiPos",        &ev.xiPos);
   t->SetBranchAddress("xiNeg",        &ev.xiNeg);
+  
+  t->SetBranchAddress("tau1_pt",        &ev.tau1_pt);
+  t->SetBranchAddress("tau2_pt",        &ev.tau2_pt);
+  t->SetBranchAddress("tau1_eta",        &ev.tau1_eta);
+  t->SetBranchAddress("tau2_eta",        &ev.tau2_eta);
   
 }

@@ -9,7 +9,7 @@ fi
 
 ####### USER SETTINGS ###########
 export HOME=/afs/cern.ch/user/m/mpitt
-source /afs/cern.ch/user/m/mpitt/.zshrc
+source $HOME/.zshrc
 #################################
 
 inputfile=$1
