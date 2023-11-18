@@ -15,7 +15,7 @@ fi
 extime="testmatch" #testmatch tomorrow workday
 condor="submit_condor.sub"
 if [ "$DOCONDOR" -eq 1  ]; then
-echo "executable  = $CMSSW_BASE/src/GenAnalyzer/GenWeightAnal/scripts/run_job.sh" > $condor
+echo "executable  = $PWD/run_job.sh" > $condor
 echo "output      = $PWD/${condor}.out" >> $condor
 echo "error       = $PWD/${condor}.err" >> $condor
 echo "log         = $PWD/${condor}.log" >> $condor
@@ -25,6 +25,7 @@ fi
 
 sourceFolder=$1
 outputfolder=$PWD/output
+cp $CMSSW_BASE/src/GenAnalyzer/GenWeightAnal/scripts/run_job.sh .
 
 echo INFO: found `ls $sourceFolder | wc -l` files to process...
 
@@ -51,7 +52,7 @@ for f in `ls ${sourceFolder}/*root`; do
   
 done
 if [ "$DOCONDOR" -eq 1  ]; then
-  echo "Submitting $condor"
+  echo "Submitting $condor with "`cat $condor | grep arguments | wc -l`" jobs"
   echo condor_submit $condor
 fi
 

@@ -10,7 +10,7 @@ struct MiniEvent_t
     g_nw=0; 
   }
 
-  static const int MAXWEIGHTS   =  102;
+  static const int MAXWEIGHTS   =  203;
 
   Bool_t isData;
   UInt_t run,lumi,fill;
